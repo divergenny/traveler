@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import by.divergenny.traveler.dao.UserRepository;
+import by.divergenny.traveler.persistence.UserRepository;
 import by.divergenny.traveler.domain.User;
 
 @RestController
