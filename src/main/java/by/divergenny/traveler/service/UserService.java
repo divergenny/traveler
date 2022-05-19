@@ -5,7 +5,7 @@ import by.divergenny.traveler.domain.User;
 import java.util.List;
 
 public interface UserService {
-    User findByFirstName(String firstName);
+    List<User> findByFirstName(String firstName);
 
     List<User> findByLastName(String lastName);
 
@@ -17,9 +17,9 @@ public interface UserService {
 
     List<User> getByCity(String city);
 
-    void addUser(User user);
+    User addUser(User user);
 
-    void editUser(String userId, User user);
+    User editUser(String userId, User user);
 
-    void delete(String userId);
+    User deleteById(String userId);
 }
