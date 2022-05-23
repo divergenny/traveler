@@ -10,7 +10,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@SuperBuilder
 public class UserDto {
     private String id;
     private String firstName;
