@@ -1,6 +1,7 @@
 package by.divergenny.traveler.service.impl;
 
 import by.divergenny.traveler.domain.User;
+import by.divergenny.traveler.mapper.UserMapper;
 import by.divergenny.traveler.persistence.UserRepository;
 import by.divergenny.traveler.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    private final UserMapper mapper;
 
     @Override
     public List<User> findByFirstName(String firstName) {
