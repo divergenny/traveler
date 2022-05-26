@@ -1,7 +1,6 @@
 package by.divergenny.traveler.dto;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 

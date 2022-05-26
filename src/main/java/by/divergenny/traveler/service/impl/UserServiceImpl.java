@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
         return userInSystem;
     }
 
-    public void checkAndSet(User userInSystem, User userWithNewData) {
+    private void checkAndSet(User userInSystem, User userWithNewData) {
         if (null != userWithNewData.getFirstName()
                 && !userWithNewData.getFirstName().isEmpty()
                 && !userInSystem.getFirstName().equals(userWithNewData.getFirstName())

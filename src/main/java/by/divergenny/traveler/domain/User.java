@@ -23,8 +23,12 @@ public class User {
     private String city;
     private String about;
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, Date dateOfBirth, String country, String city, String about) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.country = country;
+        this.city = city;
+        this.about = about;
     }
 }
