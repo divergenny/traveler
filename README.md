@@ -2,7 +2,7 @@
 
 ## Description  
 Preparation for the project with a professional mentor **Alena** of the Middle+ level in [Java Development](https://en.wikipedia.org/wiki/Java_(programming_language)).  
-We analyze the main points that will definitely be needed in Java Development. 
+We analyze the main points that will definitely be needed in Real Java Application. 
 
 ## Database  
 In the project I use a non-relational [MongoDB](https://www.mongodb.com/) database.  
