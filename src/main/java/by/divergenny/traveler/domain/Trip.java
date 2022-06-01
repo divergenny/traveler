@@ -12,11 +12,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Trip {
     private String id;
     private String userid;
-    private Date datestart;
-    private Date dateend;
+    private Date dateStart;
+    private Date dateEnd;
     private String country;
     private String city;
     private int budget;

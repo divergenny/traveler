@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class User {
 
     @Id
@@ -19,6 +20,7 @@ public class User {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
+    private String email;
     private String country;
     private String city;
     private String about;
