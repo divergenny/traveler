@@ -22,13 +22,16 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class TripServiceImplTest {
-    @MockBean
+    @Autowired
     private TripService tripService;
 
     @MockBean
     private TripRepository tripRepo;
 
-
+    /**
+     * Another method to identify what will be return is:
+     * when(tripRepo.insert((Trip) any())).thenReturn(trip);
+     */
     @Test
     void add() {
         Trip trip = new Trip("1", "1", Date.valueOf("2022-01-01"),
@@ -36,7 +39,6 @@ class TripServiceImplTest {
                 "Philadelphia", 100,
                 List.of(""), true);
         Mockito.doReturn(trip).when(tripRepo).insert((Trip) any());
-        //when(tripRepo.insert((Trip) any())).thenReturn(trip);
         Trip createdTripEntity = tripService.add(trip);
         Assertions.assertEquals(trip, createdTripEntity);
     }
