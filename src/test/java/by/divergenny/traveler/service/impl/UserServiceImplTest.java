@@ -3,7 +3,6 @@ package by.divergenny.traveler.service.impl;
 import by.divergenny.traveler.domain.User;
 import by.divergenny.traveler.persistence.UserRepository;
 import by.divergenny.traveler.service.UserService;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,21 +20,23 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class UserServiceImplTest {
-    @MockBean
+    @Autowired
     private UserService userService;
 
     @MockBean
-    private UserRepository userRepo;
+    private UserRepository userRepository;
 
+    /**
+     * Another method to identify what will be return is:
+     * Mockito.doReturn(Optional.of(user)).when(userRepo).findById(any());
+     */
     @Test
     void deleteById() {
         User user = new User("1", "Vladimir", "Zhuk",
                 Date.valueOf("2022-01-01"), "zhuk@gmail.com",
                 "Poland", "Warsaw", "Dream trip");
-        when(userRepo.findById(any())).thenReturn(Optional.of(user));
-        //when(userRepo.deleteUserById(any())).thenAnswer(null);
+        when(userRepository.findById(any())).thenReturn(Optional.of(user));
         User deletedUser = userService.deleteById("1");
-        System.out.println("1 _-------->"+ deletedUser);
         Assertions.assertEquals(user, deletedUser);
     }
 }

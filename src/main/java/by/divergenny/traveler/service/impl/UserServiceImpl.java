@@ -109,13 +109,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User deleteById(String userId) {
         Optional<User> user = userRepository.findById(userId);
-
         if (user.isEmpty()) {
             return null;
         }
-        System.out.println("3 _-------->"+ user.get());
         userRepository.deleteUserById(userId);
-        System.out.println("2 _-------->"+ user.get());
         return user.get();
     }
 }
