@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,25 +41,25 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public Trip editTrip(String id, Trip tripWithNewData) {
-        Trip tripInSystem = tripRepository.findById(id).orElse(null);
-        if (null == tripInSystem) {
+        Optional<Trip> tripInSystem = tripRepository.findById(id);
+        if (tripInSystem.isEmpty()) {
             return null;
         }
-        checkAndSet(tripInSystem, tripWithNewData);
-        tripRepository.save(tripInSystem);
-        return tripInSystem;
+        checkAndSet(tripInSystem.get(), tripWithNewData);
+        tripRepository.save(tripInSystem.get());
+        return tripInSystem.get();
     }
 
-    public void checkAndSet(Trip tripInSystem, Trip tripWithNewData) {
-        if (null != tripWithNewData.getDatestart()
-                && !tripInSystem.getDatestart().equals(tripWithNewData.getDatestart())
+    private void checkAndSet(Trip tripInSystem, Trip tripWithNewData) {
+        if (null != tripWithNewData.getDateStart()
+                && !tripInSystem.getDateStart().equals(tripWithNewData.getDateStart())
         ) {
-            tripInSystem.setDatestart(tripWithNewData.getDatestart());
+            tripInSystem.setDateStart(tripWithNewData.getDateStart());
         }
-        if (null != tripWithNewData.getDateend()
-                && !tripInSystem.getDateend().equals(tripWithNewData.getDateend())
+        if (null != tripWithNewData.getDateEnd()
+                && !tripInSystem.getDateEnd().equals(tripWithNewData.getDateEnd())
         ) {
-            tripInSystem.setDateend(tripWithNewData.getDateend());
+            tripInSystem.setDateEnd(tripWithNewData.getDateEnd());
         }
         if (null != tripWithNewData.getCountry()
                 && !tripInSystem.getCountry().equals(tripWithNewData.getCountry())

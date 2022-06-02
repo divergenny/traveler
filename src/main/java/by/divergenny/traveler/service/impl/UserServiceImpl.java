@@ -82,6 +82,11 @@ public class UserServiceImpl implements UserService {
         ) {
             userInSystem.setDateOfBirth(userWithNewData.getDateOfBirth());
         }
+        if (null != userWithNewData.getEmail()
+                && !userInSystem.getEmail().equals(userWithNewData.getEmail())
+        ) {
+            userInSystem.setEmail(userWithNewData.getEmail());
+        }
         if (null != userWithNewData.getCountry()
                 && !userWithNewData.getCountry().isEmpty()
                 && !userInSystem.getCountry().equals(userWithNewData.getCountry())
