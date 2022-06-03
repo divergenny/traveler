@@ -72,7 +72,7 @@ public class EmailServiceImpl implements EmailService {
         properties.put(mailProperties.getPortName(), mailProperties.getPortValue());
         properties.put(mailProperties.getAuthName(), mailProperties.getAuthValue());
         properties.put(mailProperties.getStarttlsName(), mailProperties.getStarttlsValue());
-        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        //properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         return properties;
     }
 }
