@@ -14,12 +14,13 @@ public class MailController {
     @Autowired
     private EmailService emailService;
 
-    @PostMapping("/email")
-    public boolean sendEmail() {
-        MailDto mailDto = new MailDto("divergenny@gmail.com", "Hello", "Done", "123123123");
+    @PostMapping("/email/{email}")
+    public boolean sendEmail(String email) {
+        MailDto mailDto = new MailDto(email,
+                "TestEmailToYou",
+                "Well done! :)");
         emailService.sendMail(mailDto);
         return true;
     }
-
 
 }

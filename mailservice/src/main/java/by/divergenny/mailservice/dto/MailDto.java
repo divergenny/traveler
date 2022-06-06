@@ -15,4 +15,10 @@ public class MailDto {
     private String body;
     private String link;
 
+
+    public MailDto(String email, String header, String body) {
+        this.email = email;
+        this.header = header;
+        this.body = body;
+    }
 }

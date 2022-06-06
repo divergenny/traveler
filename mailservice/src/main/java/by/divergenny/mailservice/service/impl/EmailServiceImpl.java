@@ -4,7 +4,6 @@ import by.divergenny.mailservice.configuration.MailSettingProperties;
 import by.divergenny.mailservice.dto.MailDto;
 import by.divergenny.mailservice.service.EmailService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,7 @@ import java.util.Properties;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class EmailServiceImpl implements EmailService {
 
     private final MailSettingProperties mailProperties;
@@ -23,7 +23,7 @@ public class EmailServiceImpl implements EmailService {
     @Async
     public void sendMail(MailDto mailDto) {
         try {
-            //log.info("Send email called.");
+            log.info("Send email called.");
             String email = mailDto.getEmail();
             Properties properties = setSettingsOfProperties();
 
@@ -33,14 +33,13 @@ public class EmailServiceImpl implements EmailService {
                             mailProperties.getPasswordOfMailFormSend());
                 }
             };
-            Session session = Session.getInstance(properties,auth);
+            Session session = Session.getInstance(properties, auth);
 
             Message message = prepareMessage(session, email, mailDto);
             Transport.send(message);
-            //log.info("Successfully send to recipient.");
+            log.info("Successfully send to recipient.");
         } catch (Exception e) {
-            e.printStackTrace();
-            //log.error("Error during sending of email.", e);
+            log.error("Error during sending of email.", e);
         }
     }
 
@@ -57,22 +56,22 @@ public class EmailServiceImpl implements EmailService {
             message.setSubject(mailDto.getHeader());
             message.setText(mailDto.getBody());
 
-           // log.info("Email to: {}, with title: {}", email, mailDto.getHeader());
+            log.info("Email to: {}, with title: {}", email, mailDto.getHeader());
         } catch (MessagingException e) {
-            e.printStackTrace();
-            //log.error("Error by preparing message. ", e);
+            log.error("Error by preparing message. ", e);
         }
         return message;
     }
 
     private Properties setSettingsOfProperties() {
         Properties properties = new Properties();
-        System.out.println("mailProperties.getStarttlsValue())-------------------------->" + mailProperties.getStarttlsValue());
         properties.put(mailProperties.getHostName(), mailProperties.getHostValue());
         properties.put(mailProperties.getPortName(), mailProperties.getPortValue());
         properties.put(mailProperties.getAuthName(), mailProperties.getAuthValue());
         properties.put(mailProperties.getStarttlsName(), mailProperties.getStarttlsValue());
-        //properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        properties.put(mailProperties.getCheckServerIdentityName(), mailProperties.getCheckServerIdentityValue());
+        properties.put(mailProperties.getTrustName(), mailProperties.getTrustValue());
+        properties.put(mailProperties.getEnableName(), mailProperties.getEnableValue());
         return properties;
     }
 }

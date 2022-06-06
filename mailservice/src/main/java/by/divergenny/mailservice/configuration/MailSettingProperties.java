@@ -17,6 +17,9 @@ public class MailSettingProperties {
     private String portName = "mail.smtp.port";
     private String authName = "mail.smtp.auth";
     private String starttlsName = "mail.smtp.starttls.enable";
+    private String checkServerIdentityName = "mail.smtps.ssl.checkserveridentity";
+    private String trustName = "mail.smtps.ssl.trust";
+    private String enableName = "mail.smtp.ssl.enable";
 
     @Value("${notification.mail.username}")
     private String usernameOfMailFromSend;
@@ -35,5 +38,14 @@ public class MailSettingProperties {
 
     @Value("${notification.mail.starttls}")
     private String starttlsValue;
+
+    @Value("${notification.mail.checkServerIdentity}")
+    private String checkServerIdentityValue;
+
+    @Value("${notification.mail.trust}")
+    private String trustValue;
+
+    @Value("${notification.mail.enable}")
+    private String enableValue;
 
 }
