@@ -1,14 +1,22 @@
 package by.divergenny.traveler.service.impl;
 
 import by.divergenny.traveler.domain.Trip;
-import by.divergenny.traveler.exception.BaseException;
+import by.divergenny.traveler.domain.User;
 import by.divergenny.traveler.mapper.UserMapper;
 import by.divergenny.traveler.persistence.TripRepository;
 import by.divergenny.traveler.service.TripService;
+import by.divergenny.traveler.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.utils.URIBuilder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,10 +29,16 @@ public class TripServiceImpl implements TripService {
 
     private final UserMapper mapper;
 
+    private final UserService userService;
+
+    private final CallTripSendEmailFunctionServiceImpl callSendEmailTrip;
+
     @Override
     public Trip add(Trip trip) {
         log.trace("Method add, id -> {}", trip);
-        return tripRepository.insert(trip);
+        Trip newTrip = tripRepository.insert(trip);
+        callSendEmailTrip.callSendEmailOfTrip(newTrip);
+        return newTrip;
     }
 
     @Override
