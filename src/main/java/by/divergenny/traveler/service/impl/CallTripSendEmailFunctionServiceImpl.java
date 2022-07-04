@@ -3,7 +3,6 @@ package by.divergenny.traveler.service.impl;
 import by.divergenny.traveler.domain.Trip;
 import by.divergenny.traveler.domain.User;
 import by.divergenny.traveler.dto.MessageDto;
-import by.divergenny.traveler.exception.ServiceTripException;
 import by.divergenny.traveler.service.SendService;
 import by.divergenny.traveler.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.URIBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -60,7 +58,6 @@ public class CallTripSendEmailFunctionServiceImpl implements SendService {
             response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
         } catch (InterruptedException | URISyntaxException | IOException e) {
             log.error("Method callSendEmailOfTrip, tripInSystem -> {}, error -> {}", trip, e);
-            throw new ServiceTripException("callSendEmailOfTrip exception");
         }
         return response;
     }
