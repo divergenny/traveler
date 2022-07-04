@@ -2,7 +2,7 @@ package by.divergenny.traveler.dto;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -13,8 +13,8 @@ import java.util.List;
 public class TripDto {
     private String id;
     private String userId;
-    private Date dateStart;
-    private Date dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
     private String country;
     private String city;
     private int budget;
