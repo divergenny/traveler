@@ -23,13 +23,13 @@ public class TripServiceImpl implements TripService {
 
     private final UserService userService;
 
-    private final CallTripSendEmailFunctionServiceImpl callSendEmailTrip;
+    private final SendServiceImpl callSendEmailTrip;
 
     @Override
     public Trip add(Trip trip) {
         log.trace("Method add, id -> {}", trip);
         Trip newTrip = tripRepository.insert(trip);
-        callSendEmailTrip.callSendEmailOfTrip(newTrip);
+        callSendEmailTrip.sendTripEmail(newTrip);
         return newTrip;
     }
 
