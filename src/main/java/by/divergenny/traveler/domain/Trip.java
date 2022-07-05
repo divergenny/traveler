@@ -3,6 +3,7 @@ package by.divergenny.traveler.domain;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +17,8 @@ import java.util.List;
 public class Trip {
     private String id;
     private String userid;
-    private Date dateStart;
-    private Date dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
     private String country;
     private String city;
     private int budget;
